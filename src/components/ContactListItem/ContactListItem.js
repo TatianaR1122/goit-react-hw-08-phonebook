@@ -1,21 +1,27 @@
 import PropTypes from 'prop-types';
-import css from './ContactListItem.module.css';
+import { Info, ItemCont } from './ContactListItem.styled';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/operations';
+import { deleteContact } from 'redux/contacts/operations';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Button } from '@mui/material';
 
-export const ContactListItem = ({ name, phone, id }) => {
+export const ContactListItem = ({ name, number, id }) => {
   const dispatch = useDispatch();
   return (
-    <li className={css.li} id={id}>
-      {name}: {phone}
-      <button
-        className={css.button}
+    <ItemCont id={id}>
+      <Info>
+        {name}: {number}
+      </Info>
+
+      <Button
+        variant="outlined"
+        startIcon={<DeleteIcon />}
         type="button"
         onClick={() => dispatch(deleteContact(id))}
       >
         Delete
-      </button>
-    </li>
+      </Button>
+    </ItemCont>
   );
 };
 

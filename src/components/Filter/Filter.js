@@ -1,8 +1,8 @@
 import React from 'react';
-import css from './Filter.module.css';
-import { FILTER } from 'redux/formSlice';
+import { LableFilter, InputFilter } from './Filter.styled';
+import { FILTER } from 'redux/contacts/formSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFilter } from 'redux/selector';
+import { selectFilter } from 'redux/contacts/selector';
 
 export const Filter = () => {
   const dispatch = useDispatch();
@@ -11,15 +11,11 @@ export const Filter = () => {
   const handleChange = evt => {
     dispatch(FILTER(evt.target.value));
   };
+
   return (
-    <label className={css.label}>
+    <LableFilter>
       Find contacts by name
-      <input
-        className={css.input}
-        type="text"
-        value={filter}
-        onChange={handleChange}
-      />
-    </label>
+      <InputFilter type="text" value={filter} onChange={handleChange} />
+    </LableFilter>
   );
 };

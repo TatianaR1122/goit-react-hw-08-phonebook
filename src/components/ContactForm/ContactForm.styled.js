@@ -1,20 +1,19 @@
-/* // import styled from 'styled-components'; */
+import styled from 'styled-components';
 
-.form {
+export const FormCont = styled.form`
   margin-top: 10px;
   margin-bottom: 30px;
-  background-position: center;
-}
+`;
 
-.label {
+export const LabelCont = styled.label`
   display: block;
   margin-bottom: 20px;
   color: #566573;
   font-weight: 500;
   font-size: 20px;
-}
+`;
 
-.input {
+export const InputCont = styled.input`
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -24,18 +23,12 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 15px;
-
-  /* &:focus {
+  &:focus {
     outline-color: #bc8f8f;
-  } */
-}
-.input:focus {
-  outline-color: #bc8f8f;
-}
-
-.button {
+  }
+`;
+export const BtnCont = styled.button`
   padding: 10px 20px;
-  margin-top: 20px;
   background-color: #bc8f8f;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
@@ -43,17 +36,13 @@
   outline: none;
   opacity: 0.8;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   cursor: pointer;
-  color: #ffff;
+  color: #fff;
   font-weight: 700;
   font-size: 16px;
   text-transform: uppercase;
-
-  /* &:hover {
+  &:hover {
     opacity: 1;
-  } */
-}
-.button:hover {
-  opacity: 1;
-  /* outline-color: #bc8f8f; */
-}
+  }
+`;

@@ -1,34 +1,33 @@
-import css from './ContactForm.module.css';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'redux/selector';
-import { addContact } from 'redux/operations';
-import { nanoid } from '@reduxjs/toolkit';
+import { selectContacts } from 'redux/contacts/selector';
+import { addContact } from 'redux/contacts/operations';
+import { FormCont, LabelCont, InputCont, BtnCont } from './ContactForm.styled';
 
 export default function ContactForm() {
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
 
   const handleChange = event => {
     const { name, value } = event.currentTarget;
-    name === 'name' ? setName(value) : setPhone(value);
+    name === 'name' ? setName(value) : setNumber(value);
   };
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    const newContact = { name, phone, id: nanoid() };
+    const newContact = { name, number };
 
     if (
       contacts.find(
         contact => contact.name.toLowerCase() === name.toLowerCase()
       )
     ) {
-      alert(`${name} is already in contacts.`);
-    } else if (contacts.find(contact => contact.phone === phone)) {
-      alert(`${phone} is already in contacts.`);
+      alert(`${name} is already in the phonebook.`);
+    } else if (contacts.find(contact => contact.number === number)) {
+      alert(`${number} is already in the phonebook.`);
     } else {
       dispatch(addContact(newContact));
       reset();
@@ -37,15 +36,14 @@ export default function ContactForm() {
 
   const reset = () => {
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit}>
-      <label className={css.label}>
+    <FormCont onSubmit={handleSubmit}>
+      <LabelCont>
         Name
-        <input
-          className={css.input}
+        <InputCont
           type="text"
           name="name"
           value={name}
@@ -54,24 +52,21 @@ export default function ContactForm() {
           required
           onChange={handleChange}
         />
-      </label>
-      <label>
+      </LabelCont>
+      <LabelCont>
         Number
-        <input
-          className={css.input}
+        <InputCont
           type="tel"
-          name="phone"
-          value={phone}
+          name="number"
+          value={number}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           onChange={handleChange}
         />
-      </label>
+      </LabelCont>
 
-      <button className={css.button} type="submit">
-        Add contact
-      </button>
-    </form>
+      <BtnCont type="submit">Add contact</BtnCont>
+    </FormCont>
   );
 }

@@ -4,7 +4,7 @@ import { fetchContacts, addContact, deleteContact } from './operations';
 const initState = {
   contacts: {
     items: [],
-    isLoading: false,
+    isLoading: true,
     error: null,
   },
   filter: '',
@@ -22,6 +22,7 @@ const handleRejected = (state, action) => {
 const formSlice = createSlice({
   name: 'contacts',
   initialState: initState.contacts,
+  reducers: {},
 
   extraReducers: builder => {
     builder

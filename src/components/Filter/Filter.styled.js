@@ -1,14 +1,14 @@
-/* // import styled from 'styled-components'; */
+import styled from 'styled-components';
 
-.label {
+export const LableFilter = styled.label`
   display: block;
   margin-top: 10px;
   color: #566573;
   font-weight: 500;
   font-size: 18px;
-}
+`;
 
-.input {
+export const InputFilter = styled.input`
   display: block;
   margin-top: 10px;
   padding: 10px;
@@ -17,10 +17,7 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 15px;
-  /* &:focus {
+  &:focus {
     outline-color: #bc8f8f;
-  } */
-}
-.input:focus {
-  outline-color: #bc8f8f;
-}
+  }
+`;
